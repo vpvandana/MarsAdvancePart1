@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -149,9 +150,6 @@ namespace MarsAdvancePart1.Pages.Components.ProfileOverview
 
             return message;
         }
-
-        public void 
-
 
     }
 }

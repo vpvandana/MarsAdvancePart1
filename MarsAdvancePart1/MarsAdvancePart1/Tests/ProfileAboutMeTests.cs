@@ -78,12 +78,13 @@ namespace MarsAdvancePart1.Tests
         }
 
         [Test]
-        public void UpdateNoChangeOnCancelTests()
+        public void UpdateNoChangeOnCancelForAvailabilityTests()
         {
             loginSteps.doLogin();
             homePageSteps.ValidateIsLoggedIn();
 
             homePageSteps.ClickOnAvailabilityEditIcon();
+           // profileAboutMeSteps.UpdateProfileNoChangeForAvailability();
         }
 
     }

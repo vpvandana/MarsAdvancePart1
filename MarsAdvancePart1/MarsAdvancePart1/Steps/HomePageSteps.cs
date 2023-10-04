@@ -1,4 +1,5 @@
 ﻿using MarsAdvancePart1.Pages.Components;
+using MarsAdvancePart1.Pages.Components.NavigationMenu;
 using MarsAdvancePart1.Pages.Components.ProfileOverview;
 using MarsAdvancePart1.Utilities;
 using System;
@@ -13,11 +14,13 @@ namespace MarsAdvancePart1.Steps
     {
         private HomePage homePage;
         private ProfileMenuTabComponents profileMenuTabComponents;
+        private NavigationMenuTabComponents navigationMenuTabComponents;
 
         public HomePageSteps()
         {
             homePage = new HomePage();
             profileMenuTabComponents = new ProfileMenuTabComponents();
+            navigationMenuTabComponents = new NavigationMenuTabComponents();
         }
 
         public void ClickOnDescriptionIcon()
@@ -44,6 +47,16 @@ namespace MarsAdvancePart1.Steps
         public void ClickOnEarnTargetEditIcon()
         {
             profileMenuTabComponents.ClickEarnTargetEditIcon();
+        }
+
+        public void ClickOnShareSkill()
+        {
+            navigationMenuTabComponents.ClickShareSkillTab();
+        }
+
+        public void ClickOnManageListingTab()
+        {
+            navigationMenuTabComponents.ClickManageListingTab();
         }
 
         public void ValidateIsLoggedIn()

@@ -11,26 +11,37 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
 {
     public class AddShareSkillComponent : GlobalHelper
     {
+
         private IWebElement addTitle;
         private IWebElement addDescription;
         private IWebElement selectCatagory;
-        private IWebElement selectSubCatagory;
+        private IWebElement subCatagory;
         private IWebElement addTags;
-        private IWebElement hourlyServiceType;
+      
         private IWebElement oneoffServiceType;
         private IWebElement onlineLocationType;
         private IWebElement offlineLocationType;
         private IWebElement availableStartDate;
-        private IWebElement availableEndDate;
-        private IWebElement availableDays;
+        private IWebElement availableSunday;
+        private IWebElement availableSaturday;
+      
         private IWebElement availableStartHours;
+        private IWebElement availableEndHours;
         private IWebElement skillExchangeTrade;
-        private IWebElement creditTrade;
-        private IWebElement creditAmount;
+      //  private IWebElement creditTrade;
+      //  private IWebElement creditAmount;
         private IWebElement skillExchangeTag;
         private IWebElement activeWork;
         private IWebElement hiddenWork;
         private IWebElement saveButton;
+
+        private IWebElement messageBox;
+        private IWebElement messageCloseButton;
+
+        private IWebElement warningMessageBoxTitle;
+        private IWebElement warningMessageBoxDescription;   
+
+        
 
         public void RenderComponents()
         {
@@ -39,19 +50,23 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
                 addTitle = driver.FindElement(By.XPath("//input[@name='title']"));
                 addDescription = driver.FindElement(By.XPath("//textarea[@name='description']"));
                 selectCatagory = driver.FindElement(By.XPath("//select[@name='categoryId']"));
-                selectSubCatagory = driver.FindElement(By.Name("subcategoryId"));
-                addTags = driver.FindElement(By.XPath("//body/div/div/div[@id='service-listing-section']/div[contains(@class,'ui container')]/div[contains(@class,'listing')]/form[contains(@class,'ui form')]/div[contains(@class,'tooltip-target ui grid')]/div[contains(@class,'twelve wide column')]/div[contains(@class,'')]/div[contains(@class,'ReactTags__tags')]/div[contains(@class,'ReactTags__selected')]/div[contains(@class,'ReactTags__tagInput')]/input[1]"));
-                hourlyServiceType = driver.FindElement(By.XPath("//input[@name='serviceType' and @value='0']"));
+                
+                addTags = driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[4]/div[2]/div/div/div/div/input"));
+              
+                //hourlyServiceType = driver.FindElement(By.XPath("//input[@name='serviceType' and @value='0']"));
+                //  hourlyServiceType = driver.FindElement(By.XPath("//input[@name='serviceType' and @value='0']"));
                 oneoffServiceType = driver.FindElement(By.XPath("//input[@name='serviceType' and @value='1']"));
                 onlineLocationType = driver.FindElement(By.XPath("//input[@name='locationType' and @value='0']"));
-                offlineLocationType = driver.FindElement(By.XPath("//input[@name='locationType' and @value='1']"));
+                //offlineLocationType = driver.FindElement(By.XPath("//input[@name='locationType' and @value='1']"));
                 availableStartDate = driver.FindElement(By.XPath("//input[@name='startDate']"));
-                availableEndDate = driver.FindElement(By.XPath("//input[@name='endDate']"));
-                availableDays = driver.FindElement(By.Name("Available"));
-                availableStartHours = driver.FindElement(By.Name("StartTime"));
+               
+                availableSunday = driver.FindElement(By.XPath("//input[@name='Available' and @index='0']"));
+                availableSaturday = driver.FindElement(By.XPath("//input[@name='Available' and @index='6']"));
+                availableStartHours = driver.FindElement(By.XPath("//input[@name='StartTime' and @index='0']"));
+                availableEndHours = driver.FindElement(By.XPath("//input[@name='EndTime' and @index='0']"));
                 skillExchangeTrade = driver.FindElement(By.XPath("//input[@name='skillTrades' and @value='true']"));
-                creditTrade = driver.FindElement(By.XPath("//input[@name='skillTrades' and @value='false']"));
-                creditAmount = driver.FindElement(By.XPath("//input[@name='charge']"));
+               // creditTrade = driver.FindElement(By.XPath("//input[@name='skillTrades' and @value='false']"));
+               // creditAmount = driver.FindElement(By.XPath("//input[@name='charge']"));
                 skillExchangeTag = driver.FindElement(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[8]/div[4]/div/div/div/div/div/input"));
                 activeWork = driver.FindElement(By.XPath("//input[@name='isActive' and @value='true']"));
                 hiddenWork = driver.FindElement(By.XPath("//input[@name='isActive' and @value='false']"));
@@ -64,40 +79,253 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
             }
         }
 
-        public void AddShareSkills(ShareSkillAddModel skill )
+        public void RenderSubCatagoryComponent()
         {
-            Wait.WaitToBeClickable(driver, "XPath", "//input[@name='title']", 15);
+            subCatagory = driver.FindElement(By.XPath("//select[@name='subcategoryId']"));
+        }
+        public void RenderMessageComponent()
+        {
+            messageBox = driver.FindElement(By.XPath("//div[@class='ns-box-inner']"));
+            messageCloseButton = driver.FindElement(By.XPath("//a[@class='ns-close']"));
+        }
+
+        public void RenderWarningMessageForTitleComponent()
+        {
+            warningMessageBoxTitle = driver.FindElement(By.XPath("//input[@name='title']//parent::div//following-sibling::div//child::div"));
+           
+        }
+
+        public void RenderWarningMessageForDescriptionComponent()
+        {
+            warningMessageBoxDescription = driver.FindElement(By.XPath("//textarea[@name='description']//parent::div//following-sibling::div//child::div"));
+        }
+
+      
+        public void AddShareSkills(ShareSkillAddModel skill)
+        {
+            Wait.WaitToBeClickable(driver, "XPath", "//input[@name='title']", 7);
             RenderComponents();
 
-            addTitle.Click();
+           
             addTitle.SendKeys(skill.Title);
-
-            addDescription.Click();
             addDescription.SendKeys(skill.Description); 
-
-            selectCatagory.Click();
             selectCatagory.SendKeys(skill.Catagory);
-            selectSubCatagory.Click();
-            selectSubCatagory.SendKeys(skill.SubCatagory);
 
-            addTags.Click();
-            addTags.SendKeys(skill.CatagoryTags);
+            RenderSubCatagoryComponent();
+            subCatagory.SendKeys(Keys.Tab);
+            subCatagory.SendKeys(skill.SubCatagory);
+            // addTags.SendKeys(skill.CatagoryTags);
+            // addTags.SendKeys(Keys.Enter);
+            foreach (string tag in skill.CatagoryTags)
+            {
+                addTags.SendKeys(tag + Keys.Enter);
+            }
+            IList<IWebElement> serviceRadioButtons = driver.FindElements(By.Name("serviceType"));
+            int Size = serviceRadioButtons.Count;
 
-            hourlyServiceType.Click();
-            onlineLocationType.Click();
+            for (int i = 0; i < Size; i++)
+            {
+              
+                String Value = serviceRadioButtons.ElementAt(i).GetAttribute("value");
 
-            availableStartDate.Click();
-            availableStartDate.SendKeys(skill.AvailableStartDate);
+                
+                if (Value.Equals("1"))
+                {
+                    serviceRadioButtons.ElementAt(i).Click();
+                
+                    break;
+                }
+               
+            }
 
-            skillExchangeTrade.Click(); 
-            skillExchangeTag.Click();
-            skillExchangeTag.SendKeys(skill.SkillExchange);
+            IList<IWebElement> locationRadioButtons = driver.FindElements(By.Name("locationType"));
+            int locationSize = locationRadioButtons.Count;
+
+            for (int i = 0; i < locationSize; i++)
+            {
+
+                String locationValue = locationRadioButtons.ElementAt(i).GetAttribute("value");
+
+
+                if (locationValue.Equals("0"))
+                {
+                    locationRadioButtons.ElementAt(i).Click();
+
+                    break;
+                }
+
+            }
+
+           // availableStartDate.SendKeys(skill.AvailableStartDate);
+
+            //Date
+
+            DateTime currentDateTime = DateTime.Today;
+            string formattedDateTime = currentDateTime.ToString("MM/dd/YYYY");
+            availableStartDate.SendKeys(formattedDateTime);
+
+            availableSunday.Click();
+            availableStartHours.SendKeys(skill.AvailableStartTime);
+            availableEndHours.SendKeys(skill.AvailableEndTime);
+
+            availableSaturday.Click();
+            skillExchangeTrade.Click();
+            // skillExchangeTag.SendKeys(skill.SkillExchange);
+            // skillExchangeTag.SendKeys(Keys.Enter);
+
+            foreach (string tag in skill.SkillExchangeTag)
+            {
+                skillExchangeTag.SendKeys(tag + Keys.Enter);
+            }
 
             activeWork.Click();
 
             saveButton.Click();
 
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+
 
         }
+        
+        public string GetAddedSkill(ShareSkillAddModel skill)
+        {
+            Thread.Sleep(1000);
+            string result = "";
+            IReadOnlyCollection<IWebElement> rows = driver.FindElements(By.XPath("//*[@id=\"listing-management-section\"]/div[2]/div[1]/div[1]/table/tbody/tr[1]"));
+
+            foreach (IWebElement row in rows)
+            {
+                IWebElement skillCatagoryElement = row.FindElement(By.XPath("./td[2]"));
+                IWebElement skillTitleElement = row.FindElement(By.XPath("./td[3]"));
+                string addedCatagory = skillCatagoryElement.Text;
+                string addedTitle = skillTitleElement.Text;
+
+                if (addedCatagory.Equals(skill.Catagory) && addedTitle.Equals(skill.Title))
+                {
+                    result = addedCatagory;
+                    break;
+                }
+                else
+                {
+                    result = "Not Added";
+                }
+
+            }
+            return result;
+        }
+
+        public void MandatoryFieldsLeftEmpty(ShareSkillAddModel skill)
+        {
+            Wait.WaitToBeClickable(driver, "XPath", "//input[@name='title']", 7);
+            RenderComponents();
+
+            
+            addTitle.SendKeys(skill.Title);
+            addDescription.SendKeys(skill.Description);
+            selectCatagory.SendKeys(skill.Catagory);
+
+            RenderSubCatagoryComponent();
+            subCatagory.SendKeys(skill.SubCatagory);
+            // addTags.SendKeys(skill.CatagoryTags);
+            // addTags.SendKeys(Keys.Enter);
+            foreach (string tag in skill.CatagoryTags)
+            {
+                addTags.SendKeys(tag + Keys.Enter);
+            }
+
+            oneoffServiceType.Click();
+            onlineLocationType.Click();
+            availableStartDate.SendKeys(skill.AvailableStartDate);
+
+            availableSunday.Click();
+            availableStartHours.SendKeys(skill.AvailableStartTime);
+            availableEndHours.SendKeys(skill.AvailableEndTime);
+
+            skillExchangeTrade.Click();
+            //skillExchangeTag.SendKeys(skill.SkillExchangeTag);
+            //skillExchangeTag.SendKeys(Keys.Enter);
+            foreach (string tag in skill.SkillExchangeTag)
+            {
+                skillExchangeTag.SendKeys(tag + Keys.Enter);
+            }
+
+
+            activeWork.Click();
+
+            saveButton.Click();
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+
+        }
+
+        public string GetErrorMessage()
+        {
+            Wait.WaitToBeClickable(driver, "XPath", "//input[@name='title']", 7);
+            RenderMessageComponent();
+
+            String message = messageBox.Text;
+
+            //If any message visible close it
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@class='ns-close']", 5);
+            messageCloseButton.Click();
+
+            return message;
+        }
+
+        public void AddSpecialCharacterOnTitle(ShareSkillAddModel skill)
+        {
+            Wait.WaitToBeClickable(driver, "XPath", "//input[@name='title']", 7);
+            RenderComponents();
+            addTitle.SendKeys(skill.Title);
+
+
+        }
+
+        public string GetWarningMessageTitle()
+        {
+            Wait.WaitToBeClickable(driver, "XPath", "//input[@name='title']", 7);
+            RenderWarningMessageForTitleComponent();
+
+            string messageTitle = warningMessageBoxTitle.Text;
+
+            return messageTitle;
+        }
+
+        public void FirstCharacterSpaceForTitle(ShareSkillAddModel skill)
+        {
+            Wait.WaitToBeClickable(driver, "XPath", "//input[@name='title']", 7);
+            RenderComponents();
+            addTitle.SendKeys(skill.Title);
+        }
+
+        public string GetWarningMessageForFirstCharacterSpace()
+        {
+            Wait.WaitToBeClickable(driver, "XPath", "//input[@name='title']", 7);
+            RenderWarningMessageForTitleComponent();
+
+            string messageTitle = warningMessageBoxTitle.Text;
+
+            return messageTitle;
+        }
+
+        public void FirstCharacterSpaceForDescription(ShareSkillAddModel skill)
+        {
+            Wait.WaitToBeClickable(driver, "XPath", "//input[@name='title']", 7);
+            RenderComponents();
+            addTitle.SendKeys(skill.Title);
+            addDescription.SendKeys(skill.Description); 
+        }
+
+        public string GetWarningMessageForFirstCharacterSpaceDescription()
+        {
+            Wait.WaitToBeClickable(driver, "XPath", "//input[@name='title']", 7);
+            RenderWarningMessageForDescriptionComponent();
+
+            string messageTitle = warningMessageBoxDescription.Text;
+
+            return messageTitle;
+        }
+       
+
     }
 }

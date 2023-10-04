@@ -1,10 +1,6 @@
 [
   {
     "FirstName": "Test",
-    "LastName": "Analyst",
-    "Availability": "Full Time",
-    "Hours": "As needed",
-    "EarnTarget": "Less than $500 per month"
-
+    "LastName": "Analyst"
   }
 ]

@@ -35,8 +35,9 @@ namespace MarsAdvancePart1.Steps
                 profileAboutMeAddandUpdateComponent.AddandUpdateUserName(profile);
 
                 string actualAddedUserName = profileAboutMeAddandUpdateComponent.GetUserName();
+                string expectedUserName = profile.FirstName+" "+profile.LastName;
                 
-                ProfileAddandUpdateUsernameAssert.assertUpdateUserName(profile.FirstName+" "+profile.LastName, actualAddedUserName);
+                ProfileAddandUpdateUsernameAssert.assertUpdateUserName(expectedUserName, actualAddedUserName);
             }
            
         }
@@ -44,13 +45,10 @@ namespace MarsAdvancePart1.Steps
         public void UpdateProfileAvailability()
         {
             ProfileAboutMeModel profileAboutMeModel = new ProfileAboutMeModel();
+            List<ProfileAboutMeModel> profileAboutMeList = JsonReader.LoadData<ProfileAboutMeModel>("C:\\internship notes\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\TestData\\ProfileAvailabilityTestData.json");
 
-            
-            List<ProfileAboutMeModel> profileAboutMeList = JsonReader.LoadData<ProfileAboutMeModel>("C:\\internship notes\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\TestData\\ProfileAboutMeTestData.json");
-
-            foreach(var profile in  profileAboutMeList) 
-            {
-               // profileAboutMeOverviewComponent.ClickonAvailabilityEditIcon();
+            foreach(var profile in  profileAboutMeList)
+            { 
                 profileAboutMeAddandUpdateComponent.AddandUpdateAvailabilityDetails(profile);
 
                 string actualAddedAvailability = profileAboutMeAddandUpdateComponent.GetAddedAvailability();
@@ -61,7 +59,7 @@ namespace MarsAdvancePart1.Steps
 
                 //Verifying success message
                 string expectedMessage = "Availability updated";
-                string actualMessage = profileAboutMeAddandUpdateComponent.GetSuccesMessage();
+                string actualMessage = profileAboutMeAddandUpdateComponent.GetSuccessMessage();
 
                 Assert.AreEqual(expectedMessage, actualMessage, "The availability has not updated");
 
@@ -74,7 +72,7 @@ namespace MarsAdvancePart1.Steps
             ProfileAboutMeModel profileAboutMeModel = new ProfileAboutMeModel();
 
 
-            List<ProfileAboutMeModel> profileAboutMeList = JsonReader.LoadData<ProfileAboutMeModel>("C:\\internship notes\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\TestData\\ProfileAboutMeTestData.json");
+            List<ProfileAboutMeModel> profileAboutMeList = JsonReader.LoadData<ProfileAboutMeModel>("C:\\internship notes\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\TestData\\AvailabilityHoursTestData.json");
 
             foreach (var profile in profileAboutMeList)
             {
@@ -87,6 +85,11 @@ namespace MarsAdvancePart1.Steps
                     Assert.AreEqual(profile.Hours, actualAddedHours, "Actual and expected Hours do not match");
                 }
 
+                //Verifying success message
+                string expectedMessage = "Availability updated";
+                string actualMessage = profileAboutMeAddandUpdateComponent.GetSuccessMessage();
+
+                Assert.AreEqual(expectedMessage, actualMessage, "The availability has not updated");
 
             }
 
@@ -96,27 +99,32 @@ namespace MarsAdvancePart1.Steps
         {
             ProfileAboutMeModel profileAboutMeModel = new ProfileAboutMeModel();
 
-            List<ProfileAboutMeModel> profileAboutMeList = JsonReader.LoadData<ProfileAboutMeModel>("C:\\internship notes\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\TestData\\ProfileAboutMeTestData.json");
+            List<ProfileAboutMeModel> profileAboutMeList = JsonReader.LoadData<ProfileAboutMeModel>("C:\\internship notes\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\TestData\\EarnTargetTestData.json");
 
             foreach (var profile in profileAboutMeList)
             {
                 // profileAboutMeOverviewComponent.ClickonAvailabilityEditIcon();
-                profileAboutMeAddandUpdateComponent.AddandUpdateAvailabilityEarnTargetDetails(profile);
+                profileAboutMeAddandUpdateComponent.AddandUpdateAvailabilityTargetDetails(profile);
 
                 string actualAddedEarnTarget = profileAboutMeAddandUpdateComponent.GetAddedEarnTarget();
                 if (actualAddedEarnTarget == profile.EarnTarget)
                 {
                     Assert.AreEqual(profile.EarnTarget, actualAddedEarnTarget, "Actual and expected availability do not match");
                 }
+                //Verifying success message
+                string expectedMessage = "Availability updated";
+                string actualMessage = profileAboutMeAddandUpdateComponent.GetSuccessMessage();
 
+                Assert.AreEqual(expectedMessage, actualMessage, "The availability has not updated");
 
             }
         }
 
-        public void UpdateProfileNoChange()
+      /*  public void UpdateAvailabilityNoChangeonCancelIcon()
         {
+            profileAboutMeAddandUpdateComponent.UpdateNoChangesForAvailabilityOnCancel();
 
-        }
+        }*/
 
     }
 }
