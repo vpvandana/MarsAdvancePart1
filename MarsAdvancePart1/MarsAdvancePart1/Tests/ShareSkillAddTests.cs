@@ -75,5 +75,37 @@ namespace MarsAdvancePart1.Tests
 
             shareSkillAddSteps.FirstCharacterSpaceOnDescription();
         }
+
+        [Test]
+
+        public void SubCatagoryNotSelectedTests()
+        {
+            loginSteps.doLogin();
+            homePageSteps.ValidateIsLoggedIn();
+            homePageSteps.ClickOnShareSkill();
+
+            shareSkillAddSteps.SubCatagoryNotSelected();
+        }
+        [Test]
+        public void TagsNotEnteredTests()
+        {
+            loginSteps.doLogin();
+            homePageSteps.ValidateIsLoggedIn();
+            homePageSteps.ClickOnShareSkill();
+
+            shareSkillAddSteps.TagsNotEnteredSteps();
+        }
+
+        [Test]
+
+        public void ClickOnCancelShareSkillAddTests()
+        {
+            loginSteps.doLogin();
+            homePageSteps.ValidateIsLoggedIn();
+            homePageSteps.ClickOnShareSkill();
+
+            shareSkillAddSteps.ClickOnCancelForAddSkillSteps();
+            
+        }
     }
 }

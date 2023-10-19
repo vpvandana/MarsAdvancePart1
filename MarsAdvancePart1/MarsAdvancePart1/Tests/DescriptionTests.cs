@@ -20,11 +20,11 @@ namespace MarsAdvancePart1.Tests
         public DescriptionTests()
         {
            loginSteps = new LoginSteps();
-            homePageSteps = new HomePageSteps();
-            descriptionSteps = new DescriptionSteps();  
+           homePageSteps = new HomePageSteps();
+           descriptionSteps = new DescriptionSteps();  
         }
 
-        [Test]
+        [Test, Order(1)]
         public void AddDescriptionTests()
         {
             loginSteps.doLogin();
@@ -35,7 +35,7 @@ namespace MarsAdvancePart1.Tests
             descriptionSteps.AddandUpdateDescription();
         }
 
-        [Test]
+        [Test, Order(2)]
 
         public void AddSpecialNumericSymbolTests()
         {
@@ -46,7 +46,7 @@ namespace MarsAdvancePart1.Tests
             descriptionSteps.AddSpecialNumericSymbol();
         }
 
-        [Test]
+        [Test, Order(4)]
 
         public void DeleteDescriptionTests()
         {
@@ -56,7 +56,7 @@ namespace MarsAdvancePart1.Tests
 
             descriptionSteps.DeleteDescription();
         }
-        [Test]
+        [Test, Order(3)]
 
         public void FirstCharacterSpaceTests()
         {

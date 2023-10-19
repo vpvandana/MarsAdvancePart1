@@ -24,6 +24,7 @@ namespace MarsAdvancePart1.Pages.Components
             try
             {
                 userNameLabel = driver.FindElement(By.XPath("//span[contains(@class,'item ui')]"));
+               
             }
             catch (Exception ex)
             {

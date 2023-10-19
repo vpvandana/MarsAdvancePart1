@@ -36,6 +36,7 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
         {
             Wait.WaitToBeClickable(driver, "XPath", "//i[@class='remove icon']", 10);
             RenderComponents();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(9);
             deleteSkillIcon.Click();    
         }
 

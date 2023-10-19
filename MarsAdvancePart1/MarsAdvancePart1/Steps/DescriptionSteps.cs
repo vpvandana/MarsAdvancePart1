@@ -1,4 +1,5 @@
-﻿using MarsAdvancePart1.AssertHelpers;
+﻿using AventStack.ExtentReports;
+using MarsAdvancePart1.AssertHelpers;
 using MarsAdvancePart1.Model;
 using MarsAdvancePart1.Pages.Components.ProfileOverview;
 using MarsAdvancePart1.Utilities;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MarsAdvancePart1.Steps
 {
-    public class DescriptionSteps
+    public class DescriptionSteps : GlobalHelper
     {
         ProfileDescriptionComponent profileDescriptionComponent;
         JsonReader jsonReader;
@@ -40,6 +41,7 @@ namespace MarsAdvancePart1.Steps
                 if(addedDescription == profiledescription.DescriptionText)
                 {
                     Assert.AreEqual(addedDescription, profiledescription.DescriptionText, "Description does not match");
+                   
                 }
                 
             }
@@ -62,6 +64,7 @@ namespace MarsAdvancePart1.Steps
                 if (addedDescription == profiledescription.DescriptionText)
                 {
                     Assert.AreEqual(addedDescription, profiledescription.DescriptionText, "Description does not match");
+                   
                 }
 
             }
@@ -77,6 +80,7 @@ namespace MarsAdvancePart1.Steps
                 string expectedMessage = profileDescriptionComponent.GetDeletedMessage();
 
                 Assert.AreEqual(expectedMessage, actualMessage, "Description not deleted");
+           
             }
         }
 

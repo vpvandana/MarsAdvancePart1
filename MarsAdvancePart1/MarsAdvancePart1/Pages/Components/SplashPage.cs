@@ -26,8 +26,6 @@ namespace MarsAdvancePart1.Pages.Components
             }
         }
 
-
-
         public void clickSignInButton()
         {
 

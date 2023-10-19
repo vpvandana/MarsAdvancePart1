@@ -16,6 +16,7 @@ namespace MarsAdvancePart1.Model
         public string ServiceType { get; set; }
         public string LocationType { get; set; }
         public string AvailableStartDate { get; set; }
+        public string[] AvailableDays { get; set; }
         public string AvailableStartTime { get; set;}
         public string AvailableEndTime { get; set; }        
         public string SkillTrade { get; set; }

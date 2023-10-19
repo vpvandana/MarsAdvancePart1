@@ -15,12 +15,14 @@ namespace MarsAdvancePart1.Tests
         private LoginSteps loginSteps;
         private HomePageSteps homePageSteps;
         private ManageListingSteps manageListingSteps;
+        private ShareSkillAddSteps shareSkillAddSteps;
 
         public ManageListingTests()
         {
             loginSteps = new LoginSteps();
             homePageSteps = new HomePageSteps();
             manageListingSteps = new ManageListingSteps();
+            shareSkillAddSteps = new ShareSkillAddSteps();
         }
 
         [Test]
@@ -28,9 +30,61 @@ namespace MarsAdvancePart1.Tests
         {
             loginSteps.doLogin();
             homePageSteps.ValidateIsLoggedIn();
+
+            homePageSteps.ClickOnShareSkill();
+            shareSkillAddSteps.AddShareSkillSteps();
+
+            homePageSteps.ClickOnManageListingTab();
+            manageListingSteps.UpdateShareSkillSteps();
+        }
+
+        [Test]
+        public void DeleteManageListingTests()
+        {
+            loginSteps.doLogin();
+            homePageSteps.ValidateIsLoggedIn();
+
+            homePageSteps.ClickOnShareSkill();
+            shareSkillAddSteps.AddShareSkillSteps();
+            
+            homePageSteps.ClickOnManageListingTab();
+            manageListingSteps.DeleteShareSkillSteps();
+        }
+
+        [Test]
+
+        public void ViewManageListingTests()
+        {
+            loginSteps.doLogin();
+            homePageSteps.ValidateIsLoggedIn();
+
+            homePageSteps.ClickOnShareSkill();
+            shareSkillAddSteps.AddShareSkillSteps();
+
             homePageSteps.ClickOnManageListingTab();
 
-            manageListingSteps.UpdateShareSkillSteps();
+            manageListingSteps.ViewSkillSteps();
+
+
+        }
+
+        [Test]
+        public void SkillPaginationTests()
+        {
+            loginSteps.doLogin();
+            homePageSteps.ValidateIsLoggedIn();
+
+            homePageSteps.ClickOnManageListingTab();
+            manageListingSteps.PaginationSteps();
+
+        }
+        [Test]
+        public void ActiveButtonManageListingTests()
+        {
+            loginSteps.doLogin();
+            homePageSteps.ValidateIsLoggedIn();
+            homePageSteps.ClickOnManageListingTab();
+            manageListingSteps.ActiveDeactivateServiceSteps();
         }
 
     }

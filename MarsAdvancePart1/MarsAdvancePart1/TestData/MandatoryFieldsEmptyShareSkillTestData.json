@@ -1,14 +1,14 @@
 [
   {
-    "Title": " ",
-    "Description": " ",
+    "Title": "",
+    "Description":"",
     "Catagory": "Programming & Tech",
     "SubCatagory": "QA",
-    "CatagoryTags": " ",
+    "CatagoryTags": ["java","C#"],
     "ServiceType": "One-off service",
     "AvailableStartdate": "10/02/2023",
     "AvailableStartTime": "10:00 AM",
     "AvailableEndTime": "3:00 PM",
-    "SkillExchange": " "
+    "SkillExchangeTag":["Art","Drawing"]
   }
 ]
