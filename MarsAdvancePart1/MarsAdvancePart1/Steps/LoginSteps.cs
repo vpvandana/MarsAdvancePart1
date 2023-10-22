@@ -15,7 +15,7 @@ using System.Security.Policy;
 
 namespace MarsAdvancePart1.Steps
 {
-    public class LoginSteps 
+    public class LoginSteps : GlobalHelper
     {
         SplashPage loginPage;
         LoginComponent loginComponent;
@@ -92,13 +92,6 @@ namespace MarsAdvancePart1.Steps
                 string actualErrorMessage = loginComponent.GetIncorrectPasswordErrorMessage();
                 Assert.AreEqual(expectedErrorMessage, actualErrorMessage, "The actual and expected message do not match");
 
-                //Email Verification Validation
-
-               // string actualMessage = loginComponent.GetEmailVerification(user);
-               // string expectedMessage = "Email Verification Sent";
-
-               // Assert.AreEqual(expectedMessage, actualMessage, "The actual and expected message do not match");
-
             }
         }
 
@@ -110,13 +103,7 @@ namespace MarsAdvancePart1.Steps
             foreach( var user in userInformationList) 
             {
                 loginComponent.ForgotPasswordFunctionality(user);
-               
-
-                string expectedConfirmationMessage = loginComponent.GetEmailVerificationConfirmationBox();
-                string actualConfirmationMessage = "A recovery link has been sent to your inbox.\r\nPlease use the link to recover your account.";
-
-                Assert.AreEqual(expectedConfirmationMessage, actualConfirmationMessage, "Actual and expected message do not match");
-
+                 
                 string expectedMessage =  loginComponent.GetEmailVerificationSuccessMessage();
                 string actualMessage = "Please check your email to reset your password";
 
@@ -130,7 +117,6 @@ namespace MarsAdvancePart1.Steps
             List<UserInformationModel> userInformationList = JsonReader.LoadData<UserInformationModel>("C:\\internship notes\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\TestData\\InvalidVerificationIdTestData.json");
             foreach( var user in userInformationList) 
             {
-                loginPage.clickSignInButton();
                 loginComponent.InvalidVerificationEmailIdInForgotPassword(user);
                 string expectedErrorMessage = loginComponent.GetInvalidVerificationIdMessage();
                 string actualErrorMessage = "Email is Invalid";

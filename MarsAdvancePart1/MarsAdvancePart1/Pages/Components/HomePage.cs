@@ -23,7 +23,7 @@ namespace MarsAdvancePart1.Pages.Components
         {
             try
             {
-                userNameLabel = driver.FindElement(By.XPath("//span[contains(@class,'item ui')]"));
+                userNameLabel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/div[1]/div[2]/div/span"));
                
             }
             catch (Exception ex)
@@ -31,12 +31,6 @@ namespace MarsAdvancePart1.Pages.Components
                 Console.WriteLine(ex);
             }
         }
-
-       /* public ProfileMenuTabComponents GetProfileMenuTabComponents()
-        {
-            return profileMenuTabComponents;
-
-        }*/
 
         public String getFirstName()
         {

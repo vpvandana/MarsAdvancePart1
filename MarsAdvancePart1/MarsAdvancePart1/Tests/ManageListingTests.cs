@@ -25,7 +25,7 @@ namespace MarsAdvancePart1.Tests
             shareSkillAddSteps = new ShareSkillAddSteps();
         }
 
-        [Test]
+        [Test,Order(2)]
         public void UpdateManageListingTests()
         {
             loginSteps.doLogin();
@@ -38,7 +38,7 @@ namespace MarsAdvancePart1.Tests
             manageListingSteps.UpdateShareSkillSteps();
         }
 
-        [Test]
+        [Test,Order(3)]
         public void DeleteManageListingTests()
         {
             loginSteps.doLogin();
@@ -51,7 +51,7 @@ namespace MarsAdvancePart1.Tests
             manageListingSteps.DeleteShareSkillSteps();
         }
 
-        [Test]
+        [Test,Order(4)]
 
         public void ViewManageListingTests()
         {
@@ -68,7 +68,7 @@ namespace MarsAdvancePart1.Tests
 
         }
 
-        [Test]
+        [Test,Order(1)]
         public void SkillPaginationTests()
         {
             loginSteps.doLogin();
@@ -78,7 +78,7 @@ namespace MarsAdvancePart1.Tests
             manageListingSteps.PaginationSteps();
 
         }
-        [Test]
+        [Test,Order(5)]
         public void ActiveButtonManageListingTests()
         {
             loginSteps.doLogin();

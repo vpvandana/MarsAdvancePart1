@@ -403,7 +403,7 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
             {
                 if(rows.Count() > 0)
                 {
-                    string titleInTable = row.FindElement(By.XPath(".//td[3]")).Text;
+                    string titleInTable = row.FindElement(By.XPath("./td[3]")).Text;
                     if (titleInTable.Equals(skill.Title))
                     {
                         result = "Found";
@@ -443,7 +443,7 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
                 {
                     
                     toggleButton.Click();
-                    Thread.Sleep(2000);
+                    Thread.Sleep(3000);
                     
                 }
             }
@@ -457,6 +457,7 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
             //If any message visible close it
             Wait.WaitToBeClickable(driver, "XPath", "//*[@class='ns-close']", 5);
             messageCloseButton.Click();
+            Thread.Sleep(2000);
 
             return message;
         }

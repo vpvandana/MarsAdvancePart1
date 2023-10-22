@@ -24,20 +24,20 @@ namespace MarsAdvancePart1.Tests
             loginPage = new SplashPage();
         }
 
-        [Test]
+        [Test,Order(1)]
 
         public void ValidLogin()
         {
             loginSteps.ValidLoginSteps();
         }
-        [Test]
+        [Test,Order(2)]
         public void InvalidUsernameValidPasswordTests()
         {
             loginSteps.InvalidUsernameValidPasswordSteps();
 
         }
 
-        [Test]
+        [Test,Order(3)]
 
         public void IncorrectPasswordValidUsernameTests()
         {
@@ -46,7 +46,7 @@ namespace MarsAdvancePart1.Tests
         }
 
        
-        [Test]
+        [Test,Order(4)]
 
         public void ForgotPasswordFunctionalityTests()
         {
@@ -54,14 +54,14 @@ namespace MarsAdvancePart1.Tests
             loginSteps.ForgotPasswordFunctionalitySteps();
         }
 
-        [Test]
+        [Test,Order(5)]
 
         public void InvalidVerificationIdInForfotPasswordTests()
         {
-           // loginPage.clickSignInButton();
+            loginPage.clickSignInButton();
             loginSteps.InvalidVerificationIdForgotPasswordSteps();
         }
-        [Test]
+        [Test,Order(6)]
         public void PasswordCharacterSpecificationTest()
         {
             loginPage.clickSignInButton();

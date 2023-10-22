@@ -360,10 +360,6 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
             addDescription.SendKeys(skill.Description);
             selectCatagory.SendKeys(skill.Catagory);
 
-            /*foreach (string tag in skill.CatagoryTags)
-            {
-                addTags.SendKeys(tag + Keys.Enter);
-            }*/
             IList<IWebElement> serviceRadioButtons = driver.FindElements(By.Name("serviceType"));
             int Size = serviceRadioButtons.Count;
 
@@ -400,30 +396,18 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
 
             }
 
-            // availableStartDate.SendKeys(skill.AvailableStartDate);
-
-            //Date
-
             DateTime currentDateTime = DateTime.Today;
             string formattedDateTime = currentDateTime.ToString("MM/dd/YYYY");
             availableStartDate.SendKeys(formattedDateTime);
 
             IList<IWebElement> availableDaysCheckbox = driver.FindElements(By.XPath("//*[@id=\"service-listing-section\"]/div[2]/div/form/div[7]/div[2]/div/div[2]/div[1]/div/input"));
 
-           // availableSunday.Click();
             availableStartHours.SendKeys(skill.AvailableStartTime);
             availableEndHours.SendKeys(skill.AvailableEndTime);
 
             availableSaturday.Click();
             skillExchangeTrade.Click();
-            // skillExchangeTag.SendKeys(skill.SkillExchange);
-            // skillExchangeTag.SendKeys(Keys.Enter);
-
-           /* foreach (string tag in skill.SkillExchangeTag)
-            {
-                skillExchangeTag.SendKeys(tag + Keys.Enter);
-            }*/
-
+            
             activeWork.Click();
 
             saveButton.Click();
@@ -473,8 +457,7 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
             RenderSubCatagoryComponent();
             subCatagory.SendKeys(Keys.Tab);
             subCatagory.SendKeys(skill.SubCatagory);
-            // addTags.SendKeys(skill.CatagoryTags);
-            // addTags.SendKeys(Keys.Enter);
+           
             foreach (string tag in skill.CatagoryTags)
             {
                 addTags.SendKeys(tag + Keys.Enter);
@@ -506,9 +489,7 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
 
             availableSaturday.Click();
             skillExchangeTrade.Click();
-            // skillExchangeTag.SendKeys(skill.SkillExchange);
-            // skillExchangeTag.SendKeys(Keys.Enter);
-
+           
             foreach (string tag in skill.SkillExchangeTag)
             {
                 skillExchangeTag.SendKeys(tag + Keys.Enter);

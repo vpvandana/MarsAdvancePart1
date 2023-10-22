@@ -15,12 +15,13 @@ namespace MarsAdvancePart1.Steps
     {
       //  ProfileAboutMeOverviewComponent profileAboutMeOverviewComponent;
         ProfileAboutMeAddandUpdateComponent profileAboutMeAddandUpdateComponent;
+        HomePageSteps homePageSteps;
         JsonReader jsonReader;
 
         public ProfileAboutMeSteps()
         {
             profileAboutMeAddandUpdateComponent = new ProfileAboutMeAddandUpdateComponent();
-           // profileAboutMeOverviewComponent = new ProfileAboutMeOverviewComponent();
+            homePageSteps = new HomePageSteps();
             jsonReader = new JsonReader();
         }
 
@@ -120,11 +121,22 @@ namespace MarsAdvancePart1.Steps
             }
         }
 
-      /*  public void UpdateAvailabilityNoChangeonCancelIcon()
+        public void ClickonCancelIconSteps()
         {
-            profileAboutMeAddandUpdateComponent.UpdateNoChangesForAvailabilityOnCancel();
+            ProfileAboutMeModel profileAboutMeModel = new ProfileAboutMeModel();
+            List<ProfileAboutMeModel> profileAboutMeList = JsonReader.LoadData<ProfileAboutMeModel>("C:\\internship notes\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\TestData\\ProfileAvailabilityTestData.json");
 
-        }*/
+            foreach (var profile in profileAboutMeList)
+            {
+               
+                string actualAvailabity = profileAboutMeAddandUpdateComponent.GetAddedAvailability();
+
+                profileAboutMeAddandUpdateComponent.ClickAvailabilityOnCancel();
+                string newAvailabity = profileAboutMeAddandUpdateComponent.GetAddedAvailability();
+
+                Assert.AreEqual(actualAvailabity, newAvailabity, "The actual and new availabity does not match");
+            }
+        }
 
     }
 }

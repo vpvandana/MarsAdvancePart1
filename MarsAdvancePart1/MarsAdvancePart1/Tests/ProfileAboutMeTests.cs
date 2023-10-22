@@ -25,7 +25,7 @@ namespace MarsAdvancePart1.Tests
             profileAboutMeSteps = new ProfileAboutMeSteps();
         }
 
-        [Test]
+        [Test,Order(1)]
 
         public void UpdateUsernameTests()
         {
@@ -43,7 +43,7 @@ namespace MarsAdvancePart1.Tests
 
         }
 
-        [Test]
+        [Test,Order(2)]
         public void AddandUpdateAvailabilityTests()
         {
            
@@ -54,7 +54,7 @@ namespace MarsAdvancePart1.Tests
             profileAboutMeSteps.UpdateProfileAvailability();
         }
 
-        [Test]
+        [Test,Order(3)]
         public void AddandUpdateHoursTests()
         {
            
@@ -66,7 +66,7 @@ namespace MarsAdvancePart1.Tests
             profileAboutMeSteps.UpdateProfileAvailabilityHours();
         }
 
-        [Test]
+        [Test,Order(4)]
         public void AddandUpdateEarnTargetTests()
         {
             
@@ -77,14 +77,15 @@ namespace MarsAdvancePart1.Tests
             profileAboutMeSteps.UpdateProfileAvailabilityEarnTarget();
         }
 
-        [Test]
-        public void UpdateNoChangeOnCancelForAvailabilityTests()
+        [Test,Order(5)]
+        public void NoChangeOnCancelForAvailabilityTests()
         {
             loginSteps.doLogin();
             homePageSteps.ValidateIsLoggedIn();
 
             homePageSteps.ClickOnAvailabilityEditIcon();
-           // profileAboutMeSteps.UpdateProfileNoChangeForAvailability();
+          
+            profileAboutMeSteps.ClickonCancelIconSteps();
         }
 
     }

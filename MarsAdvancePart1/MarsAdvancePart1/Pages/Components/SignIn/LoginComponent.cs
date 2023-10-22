@@ -57,7 +57,7 @@ namespace MarsAdvancePart1.Pages.Components.SignIn
 
         public void RenderIncorrectPasswordMessageComponent()
         {
-            invalidPasswordErrorMessage = driver.FindElement(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-error ns-show']"));
+            invalidPasswordErrorMessage = driver.FindElement(By.XPath("//div[@class='ns-box-inner']"));
             closeMessageIcon = driver.FindElement(By.XPath("//a[@class='ns-close']"));
         }
 
@@ -80,7 +80,7 @@ namespace MarsAdvancePart1.Pages.Components.SignIn
 
         public void RenderEmailVerificationMessageBox()
         {
-            emailVerificationMessageBox = driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div"));
+            emailVerificationMessageBox = driver.FindElement(By.XPath("//div[text()='A recovery link has been sent to your inbox. ']"));
         }
         public void RenderInvalidVerificationIdErrorMessageComponent()
         {
@@ -103,9 +103,6 @@ namespace MarsAdvancePart1.Pages.Components.SignIn
             emailTextbox.SendKeys(userinformation.Email);
             passwordTextbox.SendKeys(userinformation.Password);
 
-            //Sign In using Login Button
-
-           // loginButton.Click();
         }
 
         
@@ -114,7 +111,7 @@ namespace MarsAdvancePart1.Pages.Components.SignIn
             RenderComponents();
             LoginEntries(userinformation);
             loginButton.Click();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
             Wait.WaitToBeClickable(driver, "XPath", "/html/body/div[2]/div/div/div[1]/div/div[4]", 7);
         }
@@ -126,6 +123,7 @@ namespace MarsAdvancePart1.Pages.Components.SignIn
             LoginEntries(userinformation);
             loginButton.Click();
 
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             Wait.WaitToBeClickable(driver, "XPath", "/html/body/div[2]/div/div/div[1]/div/div[4]", 7);
 
         }
@@ -140,17 +138,18 @@ namespace MarsAdvancePart1.Pages.Components.SignIn
         public void ValidUsernameIncorrectPassword(UserInformationModel userinformation)
         {
             RenderComponents();
-            LoginEntries(userinformation);
+            emailTextbox.SendKeys(userinformation.Email);
+            passwordTextbox.SendKeys(userinformation.Password);
             loginButton.Click();
-
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             Wait.WaitToBeClickable(driver, "XPath", "/html/body/div[2]/div/div/div[1]/div/div[4]", 7);
         }
         public string GetIncorrectPasswordErrorMessage()
         {
-           // driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             RenderIncorrectPasswordMessageComponent();
-            //Saving error or success message
 
+            //Saving error or success message
             String message = invalidPasswordErrorMessage.Text;
 
             //If any message visible close it
@@ -210,7 +209,7 @@ namespace MarsAdvancePart1.Pages.Components.SignIn
         public string GetInvalidVerificationIdMessage()
         {
             RenderInvalidVerificationIdErrorMessageComponent();
-            Thread.Sleep(1000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
             string errorMessage = invalidVerificationIdMessage.Text;
             return errorMessage;
         }

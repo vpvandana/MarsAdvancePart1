@@ -216,11 +216,14 @@ namespace MarsAdvancePart1.Pages.Components.ProfileOverview
             return addedEarnTarget.Text;
         }
 
-       /* public void UpdateNoChangesForAvailabilityOnCancel()
+        public void ClickAvailabilityOnCancel()
         {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             RenderAvailabilityComponent();
             availabilityEditIcon.Click();
             availabilityCloseIcon.Click();
-        }*/
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+        }
     }
 }
