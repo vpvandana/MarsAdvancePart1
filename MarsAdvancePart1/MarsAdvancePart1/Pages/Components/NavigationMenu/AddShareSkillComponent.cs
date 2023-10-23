@@ -139,8 +139,7 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
             RenderSubCatagoryComponent();
             subCatagory.SendKeys(Keys.Tab);
             subCatagory.SendKeys(skill.SubCatagory);
-            // addTags.SendKeys(skill.CatagoryTags);
-            // addTags.SendKeys(Keys.Enter);
+            
             foreach (string tag in skill.CatagoryTags)
             {
                 addTags.SendKeys(tag + Keys.Enter);
@@ -251,8 +250,7 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
 
             RenderSubCatagoryComponent();
             subCatagory.SendKeys(skill.SubCatagory);
-            // addTags.SendKeys(skill.CatagoryTags);
-            // addTags.SendKeys(Keys.Enter);
+            
             foreach (string tag in skill.CatagoryTags)
             {
                 addTags.SendKeys(tag + Keys.Enter);
@@ -267,9 +265,7 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
             availableEndHours.SendKeys(skill.AvailableEndTime);
 
             skillExchangeTrade.Click();
-            //skillExchangeTag.SendKeys(skill.SkillExchangeTag);
-            //skillExchangeTag.SendKeys(Keys.Enter);
-           
+         
             foreach (string tag in skill.SkillExchangeTag)
             {
                 skillExchangeTag.SendKeys(tag +Keys.Enter);

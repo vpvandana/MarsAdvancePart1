@@ -74,6 +74,9 @@ namespace MarsAdvancePart1.Tests
             loginSteps.doLogin();
             homePageSteps.ValidateIsLoggedIn();
 
+            homePageSteps.ClickOnShareSkill();
+            shareSkillAddSteps.AddShareSkillSteps();
+
             homePageSteps.ClickOnManageListingTab();
             manageListingSteps.PaginationSteps();
 

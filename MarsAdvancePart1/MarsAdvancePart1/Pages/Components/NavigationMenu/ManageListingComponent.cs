@@ -160,8 +160,7 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
             RenderSubCatagoryComponent();
             subCatagory.SendKeys(Keys.Tab);
             subCatagory.SendKeys(skill.SubCatagory);
-            // addTags.SendKeys(skill.CatagoryTags);
-            // addTags.SendKeys(Keys.Enter);
+            
             foreach (string tag in skill.CatagoryTags)
             {
                
@@ -343,14 +342,14 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
             IReadOnlyCollection<IWebElement> rows = driver.FindElements(By.XPath("//h2[text()='Manage Listings']//parent::div//child::tbody//tr"));
             foreach (IWebElement row in rows)
             {
-               // IWebElement catagoryElement = row.FindElement(By.XPath("./td[2]"));
+               
                try
                 {
                     IWebElement titleElement = row.FindElement(By.XPath("./td[3]"));
 
                     IWebElement descriptionElement = row.FindElement(By.XPath("./td[4]"));
 
-                    // string catagoryView = catagoryElement.Text;
+                
                     string descriptionView = descriptionElement.Text;
                     string titleView = titleElement.Text;
                     if (descriptionView.Equals(skill.Description) && titleView.Equals(skill.Title))
@@ -428,11 +427,11 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
 
         }
 
-        public void ActivateDeactivateSkills(ShareSkillAddModel skill)
+        public string ActivateDeactivateSkills(ShareSkillAddModel skill)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             RenderActiveButtonCompnent();
-
+            string result = "";
             IReadOnlyCollection<IWebElement> rows = driver.FindElements(By.XPath("//h2[text()='Manage Listings']//parent::div//child::tbody//tr"));
             foreach (IWebElement row in rows)
             {
@@ -441,12 +440,24 @@ namespace MarsAdvancePart1.Pages.Components.NavigationMenu
 
                 if(titleElement.Equals(skill.Title) && descriptionElement.Equals(skill.Description))
                 {
+                    if(toggleButton.Selected)
+                    {
+                        toggleButton.Click();
+                        Thread.Sleep(3000);
+                        result = "Activated";
+                    }
+                    else
+                    {
+                        toggleButton.Click();
+                        result = "Deactivated";
+                        break;
+                    }
                     
-                    toggleButton.Click();
-                    Thread.Sleep(3000);
                     
                 }
+                
             }
+            return result;
         }
 
         public string GetActiveMessage()

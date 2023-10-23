@@ -144,8 +144,6 @@ namespace MarsAdvancePart1.Pages.Components.ProfileOverview
             saveButton.Click();
             Wait.WaitToBeVisible(driver, "XPath", "//div[@class='title']", 15);
             Thread.Sleep(2000);
-           // driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-
             
         }
 

@@ -1,6 +1,7 @@
 ﻿using MarsAdvancePart1.Model;
 using MarsAdvancePart1.Pages.Components.NavigationMenu;
 using MarsAdvancePart1.Utilities;
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -91,7 +92,7 @@ namespace MarsAdvancePart1.Steps
             List<ShareSkillAddModel> manageListingList = JsonReader.LoadData<ShareSkillAddModel>("C:\\internship notes\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\TestData\\PaginationTestData.json");
             foreach(var item in manageListingList)
             {
-              //  manageListingComponent.GetTitle(item);
+                
                 string actualResult = manageListingComponent.GetTitleByPagination(item);
                 Assert.AreEqual(actualResult, "Found", "Title not found");
             }
@@ -102,15 +103,24 @@ namespace MarsAdvancePart1.Steps
             List<ShareSkillAddModel> manageListingList = JsonReader.LoadData<ShareSkillAddModel>("C:\\internship notes\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\MarsAdvancePart1\\TestData\\ActiveButtonManageListingTestData.json");
             foreach( var item in manageListingList)
             {
-                manageListingComponent.ActivateDeactivateSkills(item);
-                string message = manageListingComponent.GetActiveMessage();
-                string expectedMessage = "Service has been activated";
-                Assert.AreEqual(message, expectedMessage, "Actual and expected message do not match");
+                string actualResult = manageListingComponent.ActivateDeactivateSkills(item);
+                if(actualResult == "Activated")
+                {
+                    Assert.AreEqual(actualResult, "Activated", "The actual and expected result do not match");
 
-                manageListingComponent.ActivateDeactivateSkills(item);
-                string deactiveMessage = manageListingComponent.GetActiveMessage();
-                string expectedDeactiveMessage = "Service has been deactivated";
-                Assert.AreEqual(message, expectedMessage, "Actual and expected message do not match");
+                    string message = manageListingComponent.GetActiveMessage();
+                    string expectedMessage = "Service has been activated";
+                    Assert.AreEqual(message, expectedMessage, "Actual and expected message do not match");
+                }
+                else
+                {
+                    Assert.AreEqual(actualResult, "Deactivated", "The actual and expected result do not match");
+                    string deactiveMessage = manageListingComponent.GetActiveMessage();
+                    string expectedDeactiveMessage = "Service has been deactivated";
+                    Assert.AreEqual(deactiveMessage, expectedDeactiveMessage, "Actual and expected message do not match");
+                }
+             
+               
             }
         }
 
